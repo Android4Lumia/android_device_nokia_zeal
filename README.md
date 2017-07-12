@@ -15,6 +15,7 @@ Battery | 2000  mAh BP-4GW
 Touch   | Synaptics
 Display | 4.3" 800 x 480 px (~217 ppi)
 Camera  | 6.7MPx 
+
 Variants
 =============
 This repository contains support for the 720-series Nokia Lumia devices. All of the variants listed below should work with this.
