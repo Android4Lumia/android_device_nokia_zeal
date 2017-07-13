@@ -23,7 +23,7 @@ This repository contains support for the 720-series Nokia Lumia devices. All of 
 Device Type  | Codename  | Device Model
 :------------|:----------|:-------------
 RM-885       | zeal      | Lumia 720
-RM-885       | zeal_lta  | Lumia 720
+RM-885       | zeal_row  | Lumia 720 (Generic)
 RM-887       | zeal_cmcc  | Lumia 720T
 
 
