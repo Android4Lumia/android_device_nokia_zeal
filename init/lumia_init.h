@@ -27,51 +27,27 @@ namespace dpp {
 
     map<std::string, dpp:device> devices = {
         {
-            "RM-913",
+            "RM-885",
             {
-                .device =      "fame_cmcc",
-                .family =      "fame",
-                .description = "Lumia 520 (RM-913)",
+                .device =      "zeal",
+                .family =      "zeal",
+                .description = "Lumia 720 (RM-885)",
             }
         },
         {
-            "RM-914",
+            "RM-885",
             {
-                .device =      "fame",
-                .family =      "fame",
-                .description = "Lumia 520 (RM-914)",
+                .device =      "zeal_lta",
+                .family =      "zeal",
+                .description = "Lumia 720 (RM-885)",
             }
         },
         {
-            "RM-915",
+            "RM-887",
             {
-                .device =      "fame_lta",
-                .family =      "fame",
-                .description = "Lumia 520 (RM-913)",
-            }
-        },
-        {
-            "RM-917",
-            {
-                .device =      "fame_tmo",
-                .family =      "fame",
-                .description = "Lumia 521 (RM-917)",
-            }
-        },
-        {
-            "RM-997",
-            {
-                .device =      "glee_cmcc",
-                .family =      "glee",
-                .description = "Lumia 526 (RM-997)",
-            }
-        },
-        {
-            "RM-998",
-            {
-                .device =      "glee",
-                .family =      "glee",
-                .description = "Lumia 525 (RM-998)",
+                .device =      "zeal_cmcc",
+                .family =      "zeal",
+                .description = "Lumia 720 China (RM-887)",
             }
         },
     };
