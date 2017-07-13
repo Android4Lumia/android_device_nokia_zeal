@@ -17,7 +17,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "Lumia"
+#define BTM_DEF_LOCAL_NAME   "Lumia 720"
 #define BTA_DISABLE_DELAY 1000
 #define BLUETOOTH_QTI_SW TRUE
 
