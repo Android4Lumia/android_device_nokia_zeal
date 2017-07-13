@@ -16,7 +16,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(BOARD_VENDOR_PLATFORM),fame)
+ifeq ($(BOARD_VENDOR_PLATFORM),zeal)
 
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
@@ -65,7 +65,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WCNSS_SYMLINKS)
 
 # Create wlan symbolic links
 $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
-        ln -sf /persist/WCNSS_qcom_wlan_nv.bin \
+        ln -sf /system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
         $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin)
 
 endif
