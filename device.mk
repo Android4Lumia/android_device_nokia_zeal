@@ -306,7 +306,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OTA properties
 PRODUCT_PROPERTY_OVERRIDES += \
-cm.updater.uri=https://otasjrmac.ddns.net/api
+cm.updater.uri=http://sjrota.ddns.net/LineageOTA/api
 
 # Vendor product configurations
 $(call inherit-product, vendor/nokia/zeal/zeal-vendor.mk)
