@@ -41,70 +41,14 @@
 #include "log.h"
 #include "util.h"
 
-#include "dpp.h"
-
-using namespace std;
+#define DPP_PARTITION "/dev/block/mmcblk0p1"
+#define DPP_MOUNTPOINT "/dpp"
+#define DPP_FS "vfat"
+#define DPP_FLAGS MS_RDONLY|MS_NOATIME|MS_NODEV|MS_NODIRATIME|MS_NOEXEC|MS_NOSUID
+#define DPP_DATA "shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0"
+#define PRODUCT_DAT "/dpp/Nokia/product.dat"
 
 void ds_properties();
-
-int dpp::dpp_mount() {
-    int ret = 0;
-
-    if (access(DPP_MOUNTPOINT, F_OK) == -1) {
-        ret = make_dir(DPP_MOUNTPOINT, 0400);
-        if (ret) {
-            if (mount("", "/", "", MS_REMOUNT, NULL) == 0) {
-                ret = make_dir(DPP_MOUNTPOINT, 0400);
-                mount("", "/", "", MS_REMOUNT|MS_RDONLY, NULL);
-            }
-        }
-    }
-
-    if (!ret) {
-        if (mount(DPP_PARTITION, DPP_MOUNTPOINT, DPP_FS, DPP_FLAGS, DPP_DATA) == 0) {
-            return 0;
-        }
-        else {
-            ERROR("Mounting DPP failed\n");
-            return -1;
-        }
-    }
-    else {
-        ERROR("Cannot create mountpoint for DPP\n");
-        return -1;
-    }
-}
-
-dpp::device dpp::get_device() {
-    ifstream prod_dat;
-    string rmcode;
-    if (dpp::dpp_mount() == 0) {
-        if (access(PRODUCT_DAT, R_OK) == 0) {
-            prod_dat.open(PRODUCT_DAT);
-            prod_dat >> rmcode;
-            rmcode.erase(rmcode.find_last_not_of("\n\r")+1);
-            parts = split(rmcode, ':');
-            if (parts.size() == 2) {
-                if (parts.at(0) == "TYPE") {
-                    if (dpp::devices.count(parts.at(1)) == 1) {
-                        return dpp::devices.at(parts.at(1));
-                    }
-                }
-                else {
-                    ERROR("This product.dat is strange, TYPE should be the first line\n");
-                }
-            }
-            else {
-                ERROR("Invalid product.bin?\n");
-            }
-            prod_dat.close();
-        }
-        else {
-            ERROR("Cannot access device info\n");
-        }
-    }
-    return dpp::unknown;
-}
 
 void ds_properties()
 {
@@ -114,11 +58,64 @@ void ds_properties()
 
 void vendor_load_properties()
 {
-    dpp::device dev;
+    int ret = 0, rdonly = 0;
+    FILE *fp;
+    char device[PROP_VALUE_MAX];
+    char fingerprint[PROP_VALUE_MAX];
+    char modelnumber[32];
 
-    dev = dpp::get_device();
+    if (access(DPP_MOUNTPOINT, F_OK) == -1) {
+        ERROR("DPP mount point not found, creating it\n");
+        ret = make_dir(DPP_MOUNTPOINT, 0400);
+        if (ret) {
+            ERROR("cannot create DPP mount point, trying to remount rootfs as RW\n");
+            if (mount("", "/", "", MS_REMOUNT, NULL) == 0) {
+                ERROR("remount done\n");
+                rdonly = 1;
+                ret = make_dir(DPP_MOUNTPOINT, 0400);
+            }
+        }
+    }
 
-    property_set("ro.product.device", dev.device);
-    property_set("ro.product.name",   "lineage_" + dev.family);
-    property_set("ro.product.model",  dev.description);
+    if (!ret) {
+        ERROR("mounting DPP\n");
+    if (mount(DPP_PARTITION, DPP_MOUNTPOINT, DPP_FS, DPP_FLAGS, DPP_DATA) == 0) {
+            ERROR("DPP mounted\n");
+            if (access(PRODUCT_DAT, R_OK) == 0) {
+                if ((fp = fopen(PRODUCT_DAT, "r")) != NULL) {
+                    if (fgets(modelnumber, sizeof(modelnumber), fp) != NULL) {
+                        if (strcmp(modelnumber, "TYPE:RM-885\n") == 0) {
+                            property_set("ro.product.device", "zeal");
+                            property_set("ro.product.name",   "lineage_zeal");
+                            property_set("ro.product.model",  "Lumia 720 (RM-885)");
+                        }
+                        if (strcmp(modelnumber, "TYPE:RM-887\n") == 0) {
+                            property_set("ro.product.device", "zeal_cmcc");
+                            property_set("ro.product.name",   "lineage_zeal_cmcc");
+                            property_set("ro.product.model",  "Lumia 720 (RM-887)");
+                        }
+                    }
+                    fclose(fp);
+                }
+            }
+            else {
+                ERROR("cannot access product.dat\n");
+                property_set("ro.product.device", "zeal");
+                property_set("ro.product.name",   "lineage_zeal");
+                property_set("ro.product.model",  "Lumia");
+            }
+        }
+        else {
+            ERROR("mounting DPP failed\n");
+            property_set("ro.product.device", "zeal");
+            property_set("ro.product.name",   "lineage_zeal");
+            property_set("ro.product.model",  "Lumia");
+        }
+    }
+
+    if (rdonly == 1) {
+        mount("", "/", "", MS_REMOUNT|MS_RDONLY, NULL);
+    }
+
+    ERROR("setting build properties\n");
 }
