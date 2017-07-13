@@ -35,14 +35,6 @@ namespace dpp {
             }
         },
         {
-            "RM-885",
-            {
-                .device =      "zeal_lta",
-                .family =      "zeal",
-                .description = "Lumia 720 (RM-885)",
-            }
-        },
-        {
             "RM-887",
             {
                 .device =      "zeal_cmcc",
