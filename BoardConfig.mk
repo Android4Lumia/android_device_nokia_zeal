@@ -46,7 +46,7 @@ PRODUCT_MANUFACTURER := Nokia
 PRODUCT_MODEL := zeal
 
 # OTA assert
-TARGET_OTA_ASSERT_DEVICE := zeal,zeal_cmcc,zeal_lta
+TARGET_OTA_ASSERT_DEVICE := zeal,zeal_cmcc,zeal_row
 
 # Device init
 TARGET_INIT_VENDOR_LIB := libinit_zeal
