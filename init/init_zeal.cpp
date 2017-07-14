@@ -85,14 +85,14 @@ void vendor_load_properties()
                 if ((fp = fopen(PRODUCT_DAT, "r")) != NULL) {
                     if (fgets(modelnumber, sizeof(modelnumber), fp) != NULL) {
                         if (strcmp(modelnumber, "TYPE:RM-885\n") == 0) {
-                            property_set("ro.product.device", "zeal");
-                            property_set("ro.product.name",   "lineage_zeal");
+                            property_set("ro.product.device", "zeal_row");
+                            property_set("ro.product.name",   "lineage_zeal_row");
                             property_set("ro.product.model",  "Lumia 720 (RM-885)");
                         }
                         if (strcmp(modelnumber, "TYPE:RM-887\n") == 0) {
                             property_set("ro.product.device", "zeal_cmcc");
                             property_set("ro.product.name",   "lineage_zeal_cmcc");
-                            property_set("ro.product.model",  "Lumia 720 (RM-887)");
+                            property_set("ro.product.model",  "Lumia 720T (RM-887)");
                         }
                     }
                     fclose(fp);
@@ -102,14 +102,14 @@ void vendor_load_properties()
                 ERROR("cannot access product.dat\n");
                 property_set("ro.product.device", "zeal");
                 property_set("ro.product.name",   "lineage_zeal");
-                property_set("ro.product.model",  "Lumia");
+                property_set("ro.product.model",  "Lumia 720");
             }
         }
         else {
             ERROR("mounting DPP failed\n");
             property_set("ro.product.device", "zeal");
             property_set("ro.product.name",   "lineage_zeal");
-            property_set("ro.product.model",  "Lumia");
+            property_set("ro.product.model",  "Lumia 720");
         }
     }
 
