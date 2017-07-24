@@ -49,8 +49,7 @@ PRODUCT_MODEL := zeal
 TARGET_OTA_ASSERT_DEVICE := zeal,zeal_cmcc,zeal_lta
 
 # Device init
-TARGET_INIT_VENDOR_LIB := libinit_zeal
-TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_zeal.cpp
+TARGET_INIT_VENDOR_LIB := libinit_dpp
 
 # Device unified
 TARGET_UNIFIED_DEVICE := true
