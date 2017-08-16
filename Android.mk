@@ -62,10 +62,4 @@ $(FIRMWARE_WCNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WCNSS_SYMLINKS)
-
-# Create wlan symbolic links
-$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
-        ln -sf /system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-        $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin)
-
 endif

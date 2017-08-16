@@ -39,11 +39,6 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Healthd
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BACKLIGHT_PATH := /sys/class/backlight/msmfb_bl0/brightness
-PRODUCT_DEVICE := zeal
-PRODUCT_NAME := lineage_zeal
-PRODUCT_BRAND := Nokia
-PRODUCT_MANUFACTURER := Nokia
-PRODUCT_MODEL := zeal
 
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := zeal,zeal_cmcc,zeal_row
@@ -81,10 +76,16 @@ BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/cmhw
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel informations
+BOARD_CUSTOM_BOOTIMG_MK := device/nokia/fame/boot/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_CMDLINE := panic=3 console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+BOARD_KERNEL_CMDLINE := panic=3 \
+	console=ttyHSL0,115200,n8\
+	androidboot.hardware=qcom\
+	user_debug=23\
+	msm_rtb.filter=0x3F\
+	ehci-hcd.park=3\
+	androidboot.bootdevice=msm_sdcc.1
 
 # Kernel properties
 TARGET_KERNEL_SOURCE := kernel/nokia/msm8x27
