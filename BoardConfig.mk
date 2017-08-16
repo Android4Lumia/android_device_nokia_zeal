@@ -76,7 +76,7 @@ BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/cmhw
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel informations
-BOARD_CUSTOM_BOOTIMG_MK := device/nokia/fame/boot/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/nokia/zeal/boot/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE := panic=3 \
