@@ -1,6 +1,6 @@
 Nokia Lumia 720
 =============
-This branch is for building CyanogenMod 13.0 (or Android Marshmallow 6.0 AOSP based roms) ROMs.
+This branch is for building LineageOS (or Android Marshmallow 6.0 AOSP based roms) ROMs.
 
 <img src="http://cdn2.gsmarena.com/vv/pics/nokia/nokia-lumia-720-2.jpg" width="600" height="527" />
 
@@ -22,8 +22,7 @@ This repository contains support for the 720-series Nokia Lumia devices. All of 
 
 Device Type  | Codename  | Device Model
 :------------|:----------|:-------------
-RM-885       | zeal      | Lumia 720
-RM-885       | zeal_lta  | Lumia 720
-RM-887       | zeal_cmcc  | Lumia 720T
+RM-885       | zeal_row  | Lumia 720
+RM-887       | zeal_cmcc | Lumia 720T
 
 
