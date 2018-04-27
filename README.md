@@ -1,6 +1,6 @@
 Nokia Lumia 720
 =============
-This branch is for building LineageOS (or Android Marshmallow 6.0 AOSP based roms) ROMs.
+This branch is for building LineageOS 14.1 (or Android Nougat 7.1 AOSP based roms) ROMs.
 
 <img src="http://cdn2.gsmarena.com/vv/pics/nokia/nokia-lumia-720-2.jpg" width="600" height="527" />
 
