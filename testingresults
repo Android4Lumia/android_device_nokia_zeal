@@ -1,0 +1,16 @@
+Following conditions were tested successfully
+1.installation of lineageos13. on nokia lumia 720 using twrp
+2.FM radio
+3.Bluetooth
+4.Wifi
+5.Internet Browsing
+
+Other conditions
+1.Google play install unsuccessful error thrown
+google account not linked with this device
+2.camera 
+not detected
+3.sound recorder
+unable to playback
+
+continuing with tests and prepare a local build environment.
